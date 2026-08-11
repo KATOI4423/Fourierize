@@ -92,7 +92,7 @@
         <button onclick={clearCanvas}>Clear</button>
         <button onclick={() => console.log(getPixelData())}>Get Pixels</button>
         <button onclick={() => {
-            create_fourier_series_lettering(getPixelData(), new Uint8Array([1, 2, 4] /* test */))
+            create_fourier_series_lettering(getPixelData(), SIZE, new Uint8Array([1, 2, 4] /* test */))
         }}>Create</button>
     </div>
 </div>
