@@ -13,6 +13,6 @@
         "clean:deps": "rm -rf web/node_modules",
         "clean": "bun run clean:wasm && bun run clean:web",
 
-        "preview": "bun --cwd web run preview"
+        "preview": "cd web && bun run preview"
     }
 }
