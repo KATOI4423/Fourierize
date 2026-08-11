@@ -27,3 +27,6 @@ web/*.ntvs*
 web/*.njsproj
 web/*.sln
 web/*.sw?
+
+# Dist
+dist/
