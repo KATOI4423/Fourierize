@@ -1,5 +1,12 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import init, { create_fourier_series_lettering } from "../../wasm";
+
+    // WASM initialize
+    onMount(async () => {
+        await init();
+        console.log("WASM initialized");
+    });
 
     let canvas: HTMLCanvasElement;
     const SIZE = 1024;
@@ -52,13 +59,15 @@
         ctx.fillRect(0, 0, SIZE, SIZE);
     }
 
-    function getPixelData(): Uint8ClampedArray {
+    function getPixelData(): Uint8Array {
         const imageData = ctx.getImageData(0, 0, SIZE, SIZE);
-        return imageData.data;
+        return new Uint8Array(imageData.data);
     }
 
     onMount(() => {
-        ctx = canvas.getContext("2d")!;
+        ctx = canvas.getContext("2d", {
+            willReadFrequently: true,
+        })!;
         ctx.lineWidth = 16;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
@@ -82,6 +91,9 @@
     <div class="buttons">
         <button onclick={clearCanvas}>Clear</button>
         <button onclick={() => console.log(getPixelData())}>Get Pixels</button>
+        <button onclick={() => {
+            create_fourier_series_lettering(getPixelData(), new Uint8Array([1, 2, 4] /* test */))
+        }}>Create</button>
     </div>
 </div>
 
