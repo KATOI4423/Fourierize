@@ -1,6 +1,6 @@
 # Rust
 rust/target/
-rust/pkg/
+web/wasm/
 
 # Svelte + Vite
 ## Logs
