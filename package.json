@@ -1,0 +1,18 @@
+{
+    "name": "Fourierize",
+    "private": true,
+    "scripts": {
+        "dev": "bun --cwd web dev",
+
+        "build:wasm": "wasm-pack build rust --target web",
+        "build:web": "cd web && bun run build",
+        "build": "bun run build:wasm && bun run build:web",
+
+        "clean:wasm": "cargo clean --manifest-path rust/Cargo.toml && rm -rf rust/pkg",
+        "clean:web": "rm -rf dist",
+        "clean:deps": "rm -rf web/node_modules",
+        "clean": "bun run clean:wasm && bun run clean:web",
+
+        "preview": "bun --cwd web run preview"
+    }
+}
